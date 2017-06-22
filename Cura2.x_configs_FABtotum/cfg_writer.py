@@ -1,4 +1,5 @@
 import ConfigParser
+from itertools import chain
 
 qualities = {
     "fast": {
@@ -51,7 +52,8 @@ attributes = {
 }
 
 colours = {
-    "pla": ["yellow", "white", "red", "orange", "green", "brown", "blue", "black", "magenta", "silver", "gold", "wood"],
+    "pla": ["yellow", "white", "red", "orange", "green", "brown",
+            "blue", "black", "magenta", "silver", "gold", "wood"],
     "abs": ["white", "red", "black"],
     "nylon": ["natural"]
 }
@@ -64,24 +66,21 @@ class MyConfigParser(ConfigParser.SafeConfigParser):
             cls = "values"
         ConfigParser.SafeConfigParser.set(self, cls, attr, val)
 
-
 for filament, colors in colours.iteritems():
     for color in colors:
         for quality, quality_attrs in qualities.iteritems():
             config = MyConfigParser()
             with open("fabtotum_conf_factory.cfg") as f:
                 config.readfp(f)
-
             config.set("metadata", "material", "fabtotum_%s_%s" % (filament, color))
             config.set("metadata", "quality_type", quality)
+
+            attrs_chain = chain(quality_attrs.iteritems(),
+                                attributes[filament].iteritems())
+            for attribute, value in attrs_chain:
+                print "setting %s to %s" % (attribute, value)
+                config.implicit_set(attribute, value)
+
             out_name = "fabtotum_%s_%s_%s.inst.cfg" % (filament, color, quality)
-
-            for attribute, value in quality_attrs.iteritems():
-                print "setting %s to %s" % (attribute, value)
-                config.implicit_set(attribute, value)
-            for attribute, value in attributes[filament].iteritems():
-                print "setting %s to %s" % (attribute, value)
-                config.implicit_set(attribute, value)
-
             with open(out_name, 'wb') as config_out:
                 config.write(config_out)
