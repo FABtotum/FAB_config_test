@@ -34,6 +34,7 @@ attributes = {
         "cool_fan_speed_max": "100",
         "cool_fan_speed_min": "100",
         "cool_min_layer_time": "5",
+        "speed_print": "60"
     },
     "abs": {
         "adhesion_type": "raft",
@@ -41,6 +42,7 @@ attributes = {
         "cool_fan_speed_max": "50",
         "cool_fan_speed_min": "50",
         "cool_min_layer_time": "3",
+        "speed_print": "55"
     },
     "nylon": {
         "adhesion_type": "raft",
@@ -48,6 +50,15 @@ attributes = {
         "cool_fan_speed_max": "65",
         "cool_fan_speed_min": "65",
         "cool_min_layer_time": "4",
+        "speed_print": "55"
+    },
+    "tpu": {
+        "adhesion_type": "skirt",
+        "cool_fan_speed": "100",
+        "cool_fan_speed_max": "100",
+        "cool_fan_speed_min": "100",
+        "cool_min_layer_time": "5",
+        "speed_print": "40"
     }
 }
 
@@ -55,7 +66,8 @@ colours = {
     "pla": ["yellow", "white", "red", "orange", "green", "brown",
             "blue", "black", "magenta", "silver", "gold", "wood"],
     "abs": ["white", "red", "black"],
-    "nylon": ["natural"]
+    "nylon": ["natural", "carbon", "fiberglass"],
+    "tpu": ["black", "red", "white"]
 }
 
 class MyConfigParser(ConfigParser.SafeConfigParser):
