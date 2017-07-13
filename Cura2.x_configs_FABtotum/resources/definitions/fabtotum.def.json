@@ -47,9 +47,7 @@
     "machine_max_jerk_xy": { "default_value": 25.0 },
     "machine_max_jerk_z": { "default_value": 0.4 },
     "machine_max_jerk_e": { "default_value": 1.0 },
-    "retraction_hop_enabled": { "default_value": true },
-    "retraction_hop_only_when_collides": { "default_value": true },
-    "retraction_hop": { "default_value": 0.5 },
+    "retraction_hop_enabled": { "default_value": false },
     "material_diameter": { "default_value": 1.75 },
     "material_final_print_temperature": { "value": "material_print_temperature - 5" },
     "material_initial_print_temperature": { "value": "material_print_temperature" },
@@ -66,6 +64,8 @@
     "skirt_line_count": { "default_value": 3 },
     "skirt_brim_minimal_length": { "default_value": 150 },
     "infill_sparse_density": { "default_value": 24 },
-    "top_bottom_thickness": { "default_value": 0.6 }
+    "top_bottom_thickness": { "default_value": 0.6 },
+    "support_z_distance": { "default_value": "2 * layer_height" },
+    "support_interface_enable": { "default_value": true }
   }
 }
